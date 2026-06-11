@@ -16,10 +16,17 @@ of two services:
 1. Configure your `.env` file (see `url-shortener-back/.env.example` for the required variables:
    `JWT_SECRET`, `JWT_ALG`, `DATABASE_URL`, `SEED`)
 2. Set `SEED=True` if you'd like the database seeded with sample data on startup
-3. Generate a value for `JWT_SECRET`:
+3. Generate a value for `JWT_SECRET`
+
+Python:
 ```python
 from secrets import token_urlsafe
 secret_code = token_urlsafe(128)
+```
+
+Bash:
+```
+uuidgen
 ```
 
 #### Local development
