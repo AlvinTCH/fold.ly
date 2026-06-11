@@ -106,7 +106,7 @@ def redirect_shortened_url(request: Request, user_agent: Annotated[str | None, H
     ).one_or_none()
 
     if not url_data:
-        return RedirectResponse(f"{app_settings.frontend_url}/{shortener_id}")
+        return RedirectResponse(f"{app_settings.frontend_url}/404?short_id={shortener_id}")
 
     db.add(
         Analytics(

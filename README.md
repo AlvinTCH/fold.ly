@@ -13,10 +13,18 @@ of two services:
 ## Setup
 
 ### Backend
-1. Configure your `.env` file (see `url-shortener-back/.env.example` for the required variables:
-   `JWT_SECRET`, `JWT_ALG`, `DATABASE_URL`, `SEED`)
-2. Set `SEED=True` if you'd like the database seeded with sample data on startup
-3. Generate a value for `JWT_SECRET`
+1. Configure your `.env` file (see `url-shortener-back/.env.example` for the required variables)
+
+| Variable | Description |
+| --- | --- |
+| `JWT_SECRET` | Secret key used to sign and verify JWTs |
+| `JWT_ALG` | Algorithm used to sign JWTs (e.g. `HS256`) |
+| `FRONTEND_URL` | URL of the frontend, used for redirect on 404 |
+| `CORS_ORIGINS` |Used for CORS |
+| `DATABASE_URL` | Postgres connection string |
+| `SEED` | Set to `True` to seed the database with sample data on startup |
+
+2. Generate a value for `JWT_SECRET`
 
 Python:
 ```python
@@ -35,8 +43,12 @@ uuidgen
 3. Run `uv run main.py` 
 
 ### Frontend
-1. Configure your `.env` file (see `url-shortener-front/.env.example` for the required variables:
-   `BACKEND_URL`, `NEXT_PUBLIC_BACKEND_URL`)
+1. Configure your `.env` file (see `url-shortener-front/.env.example` for the required variables)
+
+| Variable | Description |
+| --- | --- |
+| `BACKEND_URL` | URL of the FastAPI backend, used server-side by the BFF API routes |
+| `NEXT_PUBLIC_BACKEND_URL` | URL of the FastAPI backend, exposed to the browser |
 
 #### Local development
 1. Install [bun](https://bun.com/docs/installation)
