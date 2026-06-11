@@ -1,0 +1,23 @@
+[project]
+name = "url-shortener-back"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.18.4",
+    "bcrypt>=5.0.0",
+    "fastapi>=0.136.3",
+    "passlib[bcrypt]>=1.7.4",
+    "psycopg[binary,pool]>=3.3.4",
+    "pydantic-settings>=2.14.1",
+    "pyjwt[crypto]>=2.13.0",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "python-dotenv>=1.2.2",
+    "sqlalchemy>=2.0.50",
+    "ua-parser[regex]>=1.0.2",
+    "uvicorn[standard]>=0.49.0",
+    "httpx2>=2.3.0",
+    "jwcrypto>=1.5.7",
+]

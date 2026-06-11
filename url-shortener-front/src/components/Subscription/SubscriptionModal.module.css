@@ -1,0 +1,32 @@
+.planCard {
+  height: 100%;
+  padding: var(--mantine-spacing-md);
+  background-color: var(--mantine-color-dark-6);
+  border: 1px solid var(--mantine-color-dark-5);
+  border-radius: var(--mantine-radius-md);
+  transition: border-color 150ms ease;
+}
+
+.planCardCurrent {
+  border-color: var(--mantine-color-yellow-5);
+}
+
+.planName {
+  font-family:
+    var(--font-space-grotesk),
+    Space Grotesk,
+    system-ui,
+    sans-serif;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.priceValue {
+  font-family:
+    var(--font-space-grotesk),
+    Space Grotesk,
+    system-ui,
+    sans-serif;
+  font-weight: 800;
+  line-height: 1;
+}

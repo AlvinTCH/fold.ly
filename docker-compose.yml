@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:16
+    container_name: fastapi_db
+    restart: always
+    environment:
+      POSTGRES_USER: local_user
+      POSTGRES_PASSWORD: local_password
+      POSTGRES_DB: local_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U local_user -d local_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./url-shortener-back
+    container_name: fastapi_web
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./url-shortener-back/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://local_user:local_password@fastapi_db:5432/local_db
+    volumes:
+      - ./url-shortener-back:/app
+      - /app/.venv
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "uv run alembic upgrade head && uv run uvicorn main:app --host 0.0.0.0 --port 8000"
+
+  frontend:
+    build:
+      context: ./url-shortener-front
+      args:
+        NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+    container_name: nextjs_web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./url-shortener-front/.env
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      BACKEND_URL: http://fastapi_web:8000
+    depends_on:
+      - backend
+    
+
+
+volumes:
+  postgres_data:

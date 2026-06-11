@@ -1,0 +1,55 @@
+.title {
+  font-size: rem(70px);
+  font-weight: 900;
+  letter-spacing: rem(-2px);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    font-size: rem(50px);
+  }
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    font-size: rem(36px);
+  }
+}
+
+.badge {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.features {
+  max-width: rem(720px);
+  margin: calc(var(--mantine-spacing-xl) * 2) auto 0;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mantine-spacing-sm);
+  padding: var(--mantine-spacing-md);
+  background-color: var(--mantine-color-dark-6);
+  border: 1px solid var(--mantine-color-dark-5);
+  border-radius: var(--mantine-radius-md);
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(36px);
+  height: rem(36px);
+  border-radius: var(--mantine-radius-md);
+  background-color: var(--mantine-color-yellow-light);
+  color: var(--mantine-color-yellow-5);
+}
+
+.featureTitle {
+  font-family:
+    var(--font-space-grotesk),
+    Space Grotesk,
+    system-ui,
+    sans-serif;
+  font-weight: 600;
+}

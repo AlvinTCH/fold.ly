@@ -1,0 +1,26 @@
+[
+    {
+        "name": "free",
+        "description": "Standard free tier with basic link limits.",
+        "limit": 5,
+        "price": 0
+    },
+    {
+        "name": "pro",
+        "description": "Advanced metrics and high volume URL shortening.",
+        "limit": 50,
+        "price": 10
+    },
+    {
+        "name": "pro+",
+        "description": "Advanced metrics and high volume URL shortening.",
+        "limit": 100,
+        "price": 50
+    },
+    {
+        "name": "enterprise",
+        "description": "Custom enterprise solutions",
+        "limit": 999999,
+        "price": 999999
+    }
+]

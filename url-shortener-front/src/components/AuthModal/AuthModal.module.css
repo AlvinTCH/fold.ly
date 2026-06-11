@@ -1,0 +1,15 @@
+.logo {
+  font-family:
+    var(--font-space-grotesk),
+    Space Grotesk,
+    system-ui,
+    sans-serif;
+  font-weight: 700;
+}
+
+.valueProp {
+  padding: var(--mantine-spacing-md);
+  background-color: var(--mantine-color-dark-6);
+  border: 1px solid var(--mantine-color-dark-5);
+  border-radius: var(--mantine-radius-md);
+}

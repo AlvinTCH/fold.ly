@@ -1,0 +1,40 @@
+.item {
+  display: block;
+  width: 100%;
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-sm);
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.item:hover {
+  background-color: var(--mantine-color-dark-6);
+}
+
+.item[data-active] {
+  background-color: var(--mantine-color-dark-6);
+  border-left-color: var(--mantine-color-yellow-5);
+}
+
+.shortUrl {
+  font-family: var(--font-space-grotesk), monospace;
+}
+
+.combobox {
+  height: auto;
+  min-height: 56px;
+  padding-top: var(--mantine-spacing-sm);
+  padding-bottom: var(--mantine-spacing-sm);
+  text-align: left;
+  button {
+    min-height: 56px;
+  }
+  --input-line-height: normal;
+}
+
+.loading {
+  min-height: 160px;
+}

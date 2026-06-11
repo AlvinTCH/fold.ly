@@ -1,0 +1,32 @@
+[
+    {
+        "username": "test_free@shorten.com",
+        "password": "TestFreeSub",
+        "profile": {
+            "name": "John Free",
+            "profile_img": "https://api.dicebear.com/7.x/bottts/svg?seed=f",
+            "subscription": {
+                "subscription_name": "free"
+            },
+            "url": []
+        }
+    },
+    {
+        "username": "test_pro@shorten.com",
+        "password": "SuperSecretPassword123!",
+        "profile": {
+            "name": "Adam Pro",
+            "profile_img": "https://api.dicebear.com/7.x/bottts/svg?seed=p",
+            "subscription": {
+                "subscription_name": "pro"
+            },
+            "url": [{
+                "creator_ip": "127.0.0.1",
+                "original_url": "https://fastapi.tiangolo.com/"
+            }, {
+                "creator_ip": "127.0.0.1",
+                "original_url": "https://google.com/"
+            }]
+        }
+    }
+]

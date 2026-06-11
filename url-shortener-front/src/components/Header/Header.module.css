@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: var(--mantine-spacing-md) var(--mantine-spacing-xl);
+  border-bottom: 1px solid var(--mantine-color-dark-5);
+  width: 100%;
+}
+
+.headergrp {
+  width: 100%;
+}
+
+.logo {
+  font-family:
+    var(--font-space-grotesk),
+    Space Grotesk,
+    system-ui,
+    sans-serif;
+  font-weight: 700;
+}
+
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
