@@ -13,7 +13,7 @@ of two services:
 ## Setup
 
 ### Backend
-1. Configure your `.env` file (see `url-shortener-back/.env` for the required variables:
+1. Configure your `.env` file (see `url-shortener-back/.env.example` for the required variables:
    `JWT_SECRET`, `JWT_ALG`, `DATABASE_URL`, `SEED`)
 2. Set `SEED=True` if you'd like the database seeded with sample data on startup
 3. Generate a value for `JWT_SECRET`:
@@ -22,20 +22,28 @@ from secrets import token_urlsafe
 secret_code = token_urlsafe(128)
 ```
 
-### Frontend
-1. Configure your `.env` file (see `url-shortener-front/.env` for the required variables:
-   `BACKEND_URL`, `NEXT_PUBLIC_BACKEND_URL`)
-2. Install dependencies with `bun install`
+#### Local development
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+2. Run `uv sync`
+3. Run `uv run main.py` 
 
-### Running everything
-1. Install Docker and Docker Compose
-2. From the repo root, run `docker compose up --build`
-   - This spins up Postgres, the FastAPI backend (migrations applied automatically), and the
-     Next.js frontend
+### Frontend
+1. Configure your `.env` file (see `url-shortener-front/.env.example` for the required variables:
+   `BACKEND_URL`, `NEXT_PUBLIC_BACKEND_URL`)
+
+#### Local development
+1. Install [bun](https://bun.com/docs/installation)
+2. Install dependencies with `bun install`
+3. Run `bun run dev`
 
 ### Storybook
 1. Navigate to the frontend folder
 2. Run `bun run storybook`
+
+### Running everything
+1. Install Docker and Docker Compose
+2. From the repo root, run `docker compose up --build`
+   - This spins up Postgres, the FastAPI backend (migrations applied automatically), and the Next.js frontend
 
 Alternatively, if you're on a Mac, run `./run_ios.sh` from the repo root — it opens two terminal
 tabs, one running the backend via `docker compose up` and the other running the frontend via
