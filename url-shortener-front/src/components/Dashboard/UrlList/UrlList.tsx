@@ -4,6 +4,7 @@ import {
   Card,
   Center,
   Combobox,
+  CopyButton,
   Group,
   Input,
   InputBase,
@@ -15,7 +16,7 @@ import {
   UnstyledButton,
   useCombobox,
 } from "@mantine/core";
-import { IconExternalLink } from "@tabler/icons-react";
+import { IconExternalLink, IconCheck, IconCopy } from "@tabler/icons-react";
 import { UrlResponse } from "@/src/entities";
 import classes from "./UrlList.module.css";
 
@@ -83,23 +84,44 @@ export function UrlList({
     <Card withBorder radius="md" padding="lg">
       <Group justify="space-between" mb="md">
         <Title order={3}>Your links</Title>
-        <Tooltip label="Open link" disabled={!selectedUrl}>
-          <ActionIcon
-            variant="subtle"
-            color="gray"
-            disabled={!selectedUrl}
-            onClick={() => {
-              if (selectedUrl) {
-                window.open(
-                  `${process.env.NEXT_PUBLIC_BACKEND_URL}/${selectedUrl.mapped_url_id}`,
-                  "_blank",
-                );
-              }
-            }}
-          >
-            <IconExternalLink size={18} />
-          </ActionIcon>
-        </Tooltip>
+        {
+          selectedUrl && (
+            <Group>
+              <Tooltip label="Open link" disabled={!selectedUrl}>
+                <CopyButton value={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${selectedUrl!.mapped_url_id}`}>
+                  {({ copied, copy }) => (
+                    <Tooltip label={copied ? "Copied" : "Copy"} withArrow>
+                      <ActionIcon
+                        variant="subtle"
+                        color={copied ? "yellow" : "gray"}
+                        onClick={copy}
+                      >
+                        {copied ? <IconCheck size={18} /> : <IconCopy size={18} />}
+                      </ActionIcon>
+                    </Tooltip>
+                  )}
+                </CopyButton>
+              </Tooltip>
+              <Tooltip label="Open link" disabled={!selectedUrl}>
+                <ActionIcon
+                  variant="subtle"
+                  color="gray"
+                  disabled={!selectedUrl}
+                  onClick={() => {
+                    if (selectedUrl) {
+                      window.open(
+                        `${process.env.NEXT_PUBLIC_BACKEND_URL}/${selectedUrl.mapped_url_id}`,
+                        "_blank",
+                      );
+                    }
+                  }}
+                >
+                  <IconExternalLink size={18} />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+          )
+        }      
       </Group>
 
       <Box visibleFrom="lg">

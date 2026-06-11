@@ -80,11 +80,12 @@ As this is a read-heavy service, it would benefit from a cache layer such as Red
 6. The dashboard page greets the user
 7. Users can click on a shortened URL to view its analytics, which currently track the user agents and IP addresses of visitors who follow the shortened link
 8. Users can click the "Open link" action on a selected URL to visit its redirect target directly
-9. Users can shorten additional URLs
-10. Once a user reaches their subscription's URL limit, a modal listing the available subscription tiers appears
-11. Users can subscribe to different tiers, which currently grant different limits on the number of URLs they can shorten
-12. Users can open the subscription modal by clicking the badge that shows their current subscription
-13. Users are returned to the home page upon logging out, which also revokes their session server-side
+9. Users can click the "Copy" action on a selected URL to copy the URL for sharing
+10. Users can shorten additional URLs
+11. Once a user reaches their subscription's URL limit, a modal listing the available subscription tiers appears
+12. Users can subscribe to different tiers, which currently grant different limits on the number of URLs they can shorten
+13. Users can open the subscription modal by clicking the badge that shows their current subscription
+14. Users are returned to the home page upon logging out, which also revokes their session server-side
 
 ## Other features
 1. End to end password encryption with JWK, with the public key served via a JWKS endpoint (`/.well-known/signing-keys.json`)
