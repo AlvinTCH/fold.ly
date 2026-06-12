@@ -13,6 +13,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { AuthModal } from "@/src/components/AuthModal/AuthModal";
 import { useShortener } from "@/src/hooks/use-shortener";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/src/store/user-store";
 
 import classes from "./ShortenForm.module.css";
 
@@ -23,6 +24,8 @@ export function ShortenForm() {
   const [error, setError] = useState<string | null>(null);
   const [authModalOpened, { open: openAuthModal, close: closeAuthModal }] =
     useDisclosure(false);
+
+  const { profile } = useUserStore()
 
   const { shortenUrl } = useShortener();
 
@@ -42,8 +45,11 @@ export function ShortenForm() {
 
   const handleSubmit = () => {
     if (!url) return;
-    openAuthModal();
-  };
+    profile
+      ? handleAuthenticated()
+      : openAuthModal()
+  }
+    
 
   const handleAuthenticated = () => {
     closeAuthModal();

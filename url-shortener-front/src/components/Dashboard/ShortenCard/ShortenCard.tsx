@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Card, Stack, TextInput, Title } from "@mantine/core";
+import { ActionIcon, Button, Card, CopyButton, Stack, TextInput, Title, Tooltip } from "@mantine/core";
+import { IconCheck, IconCopy } from "@tabler/icons-react";
 import { useShortener } from "@/src/hooks/use-shortener";
+
+import classes from "./ShortenCard.module.css";
 
 interface ShortenCardProps {
   onShortened: () => void;
@@ -10,13 +13,15 @@ interface ShortenCardProps {
 
 export function ShortenCard({ onShortened }: ShortenCardProps) {
   const [url, setUrl] = useState("");
+  const [shortUrl, setShortUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const { shortenUrl } = useShortener();
 
   const { trigger, isMutating } = shortenUrl({
-    successCallback: () => {
+    successCallback: (response) => {
       setUrl("");
+      setShortUrl(response.url);
       onShortened();
     },
     errorCallback: (error: Error) => {
@@ -49,6 +54,32 @@ export function ShortenCard({ onShortened }: ShortenCardProps) {
           </Button>
         </Stack>
       </form>
+      
+      {shortUrl && (
+        <div className={classes.result}>
+          <a
+            href={shortUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={classes.resultLink}
+          >
+            {shortUrl}
+          </a>
+          <CopyButton value={shortUrl}>
+            {({ copied, copy }) => (
+              <Tooltip label={copied ? "Copied" : "Copy"} withArrow>
+                <ActionIcon
+                  variant="subtle"
+                  color={copied ? "yellow" : "gray"}
+                  onClick={copy}
+                >
+                  {copied ? <IconCheck size={18} /> : <IconCopy size={18} />}
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </CopyButton>
+        </div>
+      )}
     </Card>
   );
 }
