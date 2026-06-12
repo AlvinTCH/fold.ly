@@ -41,6 +41,11 @@ export function UserDisplay({ profile_pic, name }: UserDisplayProps) {
 
   return (
     <>
+      <LoadingOverlay
+        visible={isMutating}
+        zIndex={1000}
+        overlayProps={{ fixed: true, blur: 2 }}
+      />
       <Menu withArrow closeOnItemClick={true}>
         <Menu.Target>
           <UnstyledButton>
