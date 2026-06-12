@@ -39,7 +39,7 @@ services:
     build:
       context: ./url-shortener-front
       args:
-        NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
     container_name: nextjs_web
     restart: unless-stopped
     ports:
