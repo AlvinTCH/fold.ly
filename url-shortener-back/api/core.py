@@ -119,11 +119,8 @@ def redirect_shortened_url(request: Request, user_agent: Annotated[str | None, H
     db.commit()
 
     parsed = urlparse(url_data[1])
-    logger.info("URL data: %s", url_data[1])
     if not parsed.scheme:
-        logger.info("No valid scheme")
         return RedirectResponse(f"https://{url_data[1]}", status_code=308)
-    logger.info("Valid scheme")
     return RedirectResponse(url_data[1], status_code=308)
 
 @base_router.get("/.well-known/signing-keys.json", response_model=dict)
