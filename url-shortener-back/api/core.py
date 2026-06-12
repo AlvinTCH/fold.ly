@@ -74,7 +74,7 @@ async def shorten_url(
                     detail=f"You have reached the limit. Subscribe to {higher_tier} to create more urls"
                 )
 
-    mapped_url_id = token_urlsafe(16)
+    mapped_url_id = token_urlsafe(8)
 
     while db.scalar(
         select(Url.mapped_url_id).where(Url.mapped_url_id == mapped_url_id)
@@ -119,8 +119,11 @@ def redirect_shortened_url(request: Request, user_agent: Annotated[str | None, H
     db.commit()
 
     parsed = urlparse(url_data[1])
+    logger.info("URL data: %s", url_data[1])
     if not parsed.scheme:
+        logger.info("No valid scheme")
         return RedirectResponse(f"https://{url_data[1]}", status_code=308)
+    logger.info("Valid scheme")
     return RedirectResponse(url_data[1], status_code=308)
 
 @base_router.get("/.well-known/signing-keys.json", response_model=dict)
