@@ -20,7 +20,8 @@ of two services:
 | `JWT_SECRET` | Secret key used to sign and verify JWTs |
 | `JWT_ALG` | Algorithm used to sign JWTs (e.g. `HS256`) |
 | `FRONTEND_URL` | URL of the frontend, used for redirect on 404 |
-| `CORS_ORIGINS` |Used for CORS |
+| `BACKEND_URL`  | URL of the backend, used to formulate the full string |
+| `CORS_ORIGINS` | Used for CORS |
 | `DATABASE_URL` | Postgres connection string |
 | `SEED` | Set to `True` to seed the database with sample data on startup |
 
@@ -61,7 +62,13 @@ uuidgen
 
 ### Running everything
 1. Install Docker and Docker Compose
-2. From the repo root, run `docker compose up --build`
+2. Configure a `.env` file at the repo root (see `.env.example` for the required variables)
+
+| Variable | Description |
+| --- | --- |
+| `NEXT_PUBLIC_BACKEND_URL` | URL of the FastAPI backend baked into the frontend build, exposed to the browser |
+
+3. From the repo root, run `docker compose up --build`
    - This spins up Postgres, the FastAPI backend (migrations applied automatically), and the Next.js frontend
 
 Alternatively, if you're on a Mac, run `./run_ios.sh` from the repo root — it opens two terminal

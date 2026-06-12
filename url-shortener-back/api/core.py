@@ -2,6 +2,7 @@
 import logging
 from secrets import token_urlsafe
 from typing import Annotated
+from urllib.parse import urlparse
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -117,6 +118,9 @@ def redirect_shortened_url(request: Request, user_agent: Annotated[str | None, H
     )
     db.commit()
 
+    parsed = urlparse(url_data[1])
+    if not parsed.scheme:
+        return RedirectResponse(f"https://{url_data[1]}", status_code=308)
     return RedirectResponse(url_data[1], status_code=308)
 
 @base_router.get("/.well-known/signing-keys.json", response_model=dict)
