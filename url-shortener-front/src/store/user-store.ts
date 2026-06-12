@@ -43,7 +43,6 @@ export const useUserStore = create<UserStoreState>()(
       },
 
       clearData: () => {
-        console.trace("clear data");
         set(() => ({
           loggedInExpiry: null,
           profile: null,

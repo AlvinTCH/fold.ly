@@ -18,11 +18,17 @@ export async function GET(request: NextRequest) {
       },
     );
 
+    if (backendResponse.status === 204) {
+      return new NextResponse(null, {
+        status: backendResponse.status
+      });
+    }
+
     if (!backendResponse.ok) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 },
-      );
+      const upstreamBody = backendResponse.body ?? (await backendResponse.text());
+      return new NextResponse(upstreamBody as BodyInit | null, {
+        status: backendResponse.status
+      });
     }
 
     const response = NextResponse.json({
